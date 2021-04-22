@@ -54,7 +54,6 @@
             <artifactId>nekohtml</artifactId>
         </dependency>
 
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -64,6 +63,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.7.0</version>
+        </dependency>
+
+        <!-- 使用springboot的activeMQ来记录秒杀消息队列-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
 
         <dependency>

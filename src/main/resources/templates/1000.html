@@ -50,9 +50,9 @@
 	}
 	function startSeckill(res){
 	  	$.ajax({
-	  		url : "seckillPage/startSeckill",
+	  		url : "seckillPage/startSeckill/1000",
 	  		type : 'post',
-	  		data : {'ticket' : res.ticket,'randstr':res.randstr},
+	  		data : {'ticket' : res.ticket,'randstr':res.randstr,'userId':1},
 	  		success : function(result) {
 	  			alert(result.code)
 	  		}
