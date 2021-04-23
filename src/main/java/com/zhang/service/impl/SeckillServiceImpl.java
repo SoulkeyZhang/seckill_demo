@@ -53,7 +53,7 @@ public class SeckillServiceImpl implements SeckillService {
     public void deleteSeckill(long seckillId) {
         String sql = "DELETE FROM success_killed WHERE seckill_id=?";
         dynamicQuery.nativeExecuteUpdate(sql,seckillId);
-        sql = "UPDATE seckill SET number = 100 WHERE seckill_id=?";
+        sql = "UPDATE seckill SET number = 100 WHERE seckill_id=?"; // 暂时先只有10个商品，用于测试
         dynamicQuery.nativeExecuteUpdate(sql,seckillId);
     }
 
@@ -85,6 +85,7 @@ public class SeckillServiceImpl implements SeckillService {
         return Resp.error(SeckillStatEnum.END);
     }
 
+
     @Transactional(rollbackFor = Exception.class)
     @Override
     public Resp startSeckillByDBOC(long seckillId, long userId,long number) { // 基于数据库乐观锁的秒杀实现
@@ -100,11 +101,14 @@ public class SeckillServiceImpl implements SeckillService {
                 successKilled.setSeckillId(seckillId);
                 successKilled.setCreateTime(new Timestamp(System.currentTimeMillis()));
                 dynamicQuery.save(successKilled);
+                logger.info("购买成功，修改数据库");
                 return Resp.ok();
             } else {
+                logger.warn("购买失败1");
                 return Resp.error();
             }
         } else {
+            logger.warn("购买失败2");
             return Resp.error();
         }
     }

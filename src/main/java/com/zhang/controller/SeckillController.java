@@ -31,6 +31,11 @@ public class SeckillController {
     @Autowired
     private SeckillService seckillService;
 
+    /**
+     *
+     * @param seckillId
+     * @return
+     */
     @ApiOperation(value = "启动秒杀",nickname = "Soulkey")
     @PostMapping("/start")
     public Resp startSeckill(long seckillId) {
